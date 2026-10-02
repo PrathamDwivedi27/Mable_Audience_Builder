@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npm run db:setup && tsx --test --test-concurrency=1 src/tests/audience.service.test.ts src/tests/audience.api.test.ts",
+    "test": "npm run test:unit && npm run test:integration",
+    "test:unit": "vitest run src/tests/unit",
+    "test:integration": "npm run db:setup && vitest run src/tests/integration",
     "dev": "nodemon --exec tsx src/index.ts",
     "db:up": "docker compose up -d",
     "db:setup": "tsx src/db/setup.ts"
@@ -29,6 +31,7 @@
     "@types/node": "^26.6.4",
     "@types/pg": "^8.23.1",
     "tsx": "^4.23.15",
-    "typescript": "^7.0.2"
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.11"
   }
 }
