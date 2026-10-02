@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: mable-postgres
+    environment:
+      POSTGRES_USER: mable
+      POSTGRES_PASSWORD: mable_dev_password
+      POSTGRES_DB: mable_audience
+    ports:
+      - "5432:5432"
+    volumes:
+      - mable_pgdata:/var/lib/postgresql/data
+
+volumes:
+  mable_pgdata:
