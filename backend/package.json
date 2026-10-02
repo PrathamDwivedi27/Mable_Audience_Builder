@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run db:setup && tsx --test --test-concurrency=1 src/tests/audience.service.test.ts src/tests/audience.api.test.ts",
     "dev": "nodemon --exec tsx src/index.ts",
     "db:up": "docker compose up -d",
     "db:setup": "tsx src/db/setup.ts"
@@ -15,6 +15,7 @@
   "type": "module",
   "dependencies": {
     "body-parser": "^2.3.0",
+    "cors": "^2.8.6",
     "dotenv": "^18.0.5",
     "express": "^5.2.1",
     "nodemon": "^3.1.14",
@@ -23,6 +24,7 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/node": "^26.6.4",
     "@types/pg": "^8.23.1",

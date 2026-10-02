@@ -7,13 +7,13 @@ const conditionSchema = z.object({
     eventType: z.enum(EVENT_TYPES),
     operator: z.enum(['at_least', 'exactly']),
     count: z.number().int().min(0),
-    withinDays: z.number().int().min(1).max(365),
+    withinDays: z.number().int().min(1).max(365), // upper limit keeps the date maths valid
 });
 
 export const audiencePreviewSchema = z.object({
-    name: z.string().trim().min(1).max(100),
+    name: z.string().trim().min(1),
     asOf: z.iso.datetime(), // e.g. "2026-09-29T00:00:00.000Z"
-    conditions: z.array(conditionSchema).min(1).max(10),
+    conditions: z.array(conditionSchema).min(1),
 });
 
 export type Condition = z.infer<typeof conditionSchema>;
