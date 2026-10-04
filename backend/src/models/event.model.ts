@@ -32,8 +32,5 @@ CREATE TABLE IF NOT EXISTS events (
 
 CREATE INDEX IF NOT EXISTS idx_events_user_type_time
     ON events (anonymous_id, event_type, occurred_at);
-
-CREATE INDEX IF NOT EXISTS idx_events_type_time
-    ON events (event_type, occurred_at);
 `;
  

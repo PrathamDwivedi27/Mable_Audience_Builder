@@ -10,6 +10,11 @@ services:
       - "5432:5432"
     volumes:
       - mable_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mable -d mable_audience"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
 
 volumes:
   mable_pgdata:

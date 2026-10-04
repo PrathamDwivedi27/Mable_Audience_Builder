@@ -8,7 +8,7 @@
     "test:unit": "vitest run src/tests/unit",
     "test:integration": "npm run db:setup && vitest run src/tests/integration",
     "dev": "nodemon --exec tsx src/index.ts",
-    "db:up": "docker compose up -d",
+    "db:up": "docker compose up -d --wait",
     "db:setup": "tsx src/db/setup.ts"
   },
   "keywords": [],
