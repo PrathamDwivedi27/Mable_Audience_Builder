@@ -2,7 +2,6 @@ import { pool } from '../db/pool.js';
 import logger from '../utils/logger.js';
 import type { EventType } from '../models/event.model.js';
 
-// One rule, with its time window already worked out by the service.
 export interface ConditionQuery {
     eventType: EventType;
     operator: 'at_least' | 'exactly';
@@ -18,7 +17,6 @@ export interface MatchedUser {
     counts: number[];
 }
 
-// The only SQL text we add ourselves. Everything else goes through $1, $2... placeholders.
 const SQL_OPERATORS = {
     at_least: '>=',
     exactly: '=',
@@ -26,9 +24,6 @@ const SQL_OPERATORS = {
 
 class EventRepository {
 
-    // Finds every user who passes ALL conditions, using a single query.
-    // Window for each condition: after windowStart, up to and including windowEnd.
-    // Users are anyone with at least one event, so "purchase exactly 0" can match them.
     async findMatchingUsers(conditions: ConditionQuery[]): Promise<MatchedUser[]> {
         try {
             logger.debug(`[EventRepository] Finding users matching ${conditions.length} condition(s)`);
